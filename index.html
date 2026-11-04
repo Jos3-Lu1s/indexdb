@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Tienda</title>
+    </head>
+    <body>
+        <h1>TIENDA</h1>
+        <form>
+            Nombre <input id="txtNombre" /> <br />
+            Cantidad <input id="txtCantidad" /> <br />
+            Precio <input id="txtPrecio" /> <br /><br />
+            <button type="button" onclick="funAlta()">AGREGAR</button>
+            <button type="button" onclick="funListar()">LISTAR</button>
+            <button type="button" onclick="funBuscar()">BUSCAR</button>
+            <button type="button" onclick="funModificar()">MODIFICAR</button>
+            <button type="button" onclick="funBaja()">BORRAR</button><br />
+            <div id="resp"></div>
+        </form>
+        <script src="code.js"></script>
+    </body>
+</html>
