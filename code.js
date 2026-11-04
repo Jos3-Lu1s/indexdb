@@ -60,25 +60,35 @@ const Agregar = async (prod) => {
         const tran = BD.transaction("inventario", "readwrite");
         const tabla = tran.objectStore("inventario");
         const resp = tabla.add(prod);
-        tran.onComplete = resolve;
-        tran.error = () => {
+        tran.oncomplete = (e) => {
+            console.log("dato agregado");
+            return resolve;
+        };
+        tran.onerror = (e) => {
             reject(tran.error);
         };
     });
 };
 
-Agregar(producto3);
-
-refBDTienda.onerror = (Err) => {
-    console.log("Error", Err.target.error);
-};
-
-refBDTienda.onsuccess = (Event) => {
-    let BDTienda = Event.target.result;
-    const tran = BDTienda.transaction("inventario", "readwrite");
-    const tabla = tran.objectStore("inventario");
-    const resp = tabla.add(producto1);
-    resp.onsuccess = (Event) => {
-        console.log("dato agregado");
+const funAlta = () => {
+    const newProd = {
+        nombre: document.querySelector("#txtNombre").value,
+        cantidad: document.querySelector("#txtCantidad").value * 1,
+        precio: document.querySelector("#txtPrecio").value * 1,
     };
+    Agregar(newProd);
 };
+
+// refBDTienda.onerror = (Err) => {
+//     console.log("Error", Err.target.error);
+// };
+
+// refBDTienda.onsuccess = (Event) => {
+//     let BDTienda = Event.target.result;
+//     const tran = BDTienda.transaction("inventario", "readwrite");
+//     const tabla = tran.objectStore("inventario");
+//     const resp = tabla.add(producto1);
+//     resp.onsuccess = (Event) => {
+//         console.log("dato agregado");
+//     };
+// };
