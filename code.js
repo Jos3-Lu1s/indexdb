@@ -79,6 +79,14 @@ const funAlta = () => {
     Agregar(newProd);
 };
 
+const funListar = async () => {
+    const DB = await abrirBD();
+    return new Promise((resolve, reject) => {
+        const tran = BD.transaction("inventario", "readonly");
+        const tabla = tran.objectStore("inventario");
+    });
+};
+
 // refBDTienda.onerror = (Err) => {
 //     console.log("Error", Err.target.error);
 // };
